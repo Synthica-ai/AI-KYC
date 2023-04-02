@@ -1,0 +1,33 @@
+name: Deploy AI-KYC Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip python3-dev build-essential libssl-dev libffi-dev
+        sudo apt-get install -y python3-venv
+        python3 -m venv env
+        source env/bin/activate
+        pip install wheel
+        pip install -r requirements.txt
+
+    - name: Authenticate with Google Cloud
+      uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0.2.0
+      with:
+        service_account_key: ${{ secrets.GCLOUD_AUTH }}
+
+    - name: Deploy to Python Server
+      run: |
+        gcloud compute scp --recurse . username@server:/path/to/destination
