@@ -22,6 +22,7 @@ jobs:
       with:
         key: ${{ secrets.PUB_KEY }}
         name: id_rsa.pub
+        known_hosts: ${{ secrets.HOST }}
         if_key_exists: ignore
         
     - name: Deploy Code
