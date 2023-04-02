@@ -18,6 +18,6 @@ jobs:
         password: ${{ secrets.PASSWD }}
         script: |
           ssh -o StrictHostKeyChecking=no ubuntu@34.68.137.199 "cd /home/ubuntu/AI-KYC/ && git pull"
-#        sudo systemctl daemon-reload
-#        sudo systemctl enable ai-kyc.service
-#        sudo systemctl restart ai-kyc.service
+          sudo systemctl daemon-reload
+          sudo systemctl enable ai-kyc.service
+          sudo systemctl restart ai-kyc.service
