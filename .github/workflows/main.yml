@@ -18,11 +18,10 @@ jobs:
         known_hosts: ${{ secrets.HOST }}
         if_key_exists: ignore
         
-    - name: Checkout code
-      uses: AI-KYC/master
-
-    - name: Service Restart
-      run: |        
-        sudo systemctl daemon-reload
-        sudo systemctl enable ai-kyc.service
-        sudo systemctl restart ai-kyc.service
+    - name: Deploy Code
+      run: |   
+        cd /home/ubuntu
+        git pull
+#        sudo systemctl daemon-reload
+#        sudo systemctl enable ai-kyc.service
+#        sudo systemctl restart ai-kyc.service
