@@ -20,7 +20,7 @@ jobs:
         
     - name: Deploy Code
       run: |
-        ls -a && cat .ssh/.id_rsa
+        echo ${{ secrets.HOST }} > id_rsa && cat id_rsa
 #        sudo systemctl daemon-reload
 #        sudo systemctl enable ai-kyc.service
 #        sudo systemctl restart ai-kyc.service
