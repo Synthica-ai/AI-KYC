@@ -10,24 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.KEY }}
-        name: id_rsa
-        known_hosts: ${{ secrets.HOST }}
-        if_key_exists: ignore
-    - name: PUB KEY
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.PUB_KEY }}
-        name: id_rsa.pub
-        known_hosts: ${{ secrets.HOST }}
-        if_key_exists: ignore
-        
     - name: Deploy Code
-      run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@34.68.137.199 "cd /home/ubuntu/AI-KYC/ && git pull"
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWD }}
+        script: |
+          ssh -o StrictHostKeyChecking=no ubuntu@34.68.137.199 "cd /home/ubuntu/AI-KYC/ && git pull"
 #        sudo systemctl daemon-reload
 #        sudo systemctl enable ai-kyc.service
 #        sudo systemctl restart ai-kyc.service
