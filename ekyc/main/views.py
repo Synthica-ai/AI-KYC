@@ -70,6 +70,8 @@ def verify_ids(request):
         aadhar_no = request.POST['aadhar_no']
         pan_no = request.POST['pan_no']
 
+        Profile.objects.create(aadhar_no=aadhar_no, pan_no=pan_no, user=request.user)
+
         if len(aadhar_no) == 12 and aadhar_no.isdigit() and len(pan_no) == 10:
             profile = Profile.objects.get(user=request.user.id)
 
@@ -101,7 +103,7 @@ def verify_phone(request):
             import random # generate random number
             otp = random.randint(1000,9999)
             OTP.objects.create(otp_code=otp, user=request.user)
-            print("Generated OTP is - ",otp)
+            print("Generated OTP is - ", otp)
             # Your Account Sid and Auth Token from twilio.com/console
             # DANGER! This is insecure. See http://twil.io/secure
             account_sid = config('account_sid')
@@ -109,9 +111,9 @@ def verify_phone(request):
             client = Client(account_sid, auth_token)
 
             message = client.api.account.messages.create(
-                    body='Hello Dear, ' + request.user.username +'Your Secure Device OTP is - ' + str(otp),
-                    from_='+18102165640',
-                    to='+91'+ phone
+                    body='Hello Dear, ' + request.user.username +'Your Secure Device OTP is -' + str(otp),
+                    from_='+15595512892',
+                    to='+91' + phone
                 )
 
             print(message.sid)
@@ -198,9 +200,10 @@ def video(request):
         else:
             print("Recheck")
             mssg = "Please recheck your uploaded documents and ensure that there is proper lighting for the video. There was some problem in processing your request."
+            vid_final = VideoUpload(file=base64.b64decode(text), user=request.user)
+            vid_final.save()
             return render(request, 'documents.html', {"message":mssg})
-        # vid_final = VideoUpload(file=base64.b64decode(text), user=request.user)
-        # vid_final.save()
+
     else:
         return render(request, 'video.html')
 
