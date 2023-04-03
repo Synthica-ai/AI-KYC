@@ -57,7 +57,7 @@ def login(request):
     else:
         return render(request, "login.html")
     return render(request, "login.html")
-    
+
 def logout(request):
     userModel.auth.logout(request)
     return redirect('/')
@@ -90,7 +90,7 @@ def verify_ids(request):
             return redirect('verifyids')
     else:
         return render(request, 'aadharPan.html')
-
+#testing
 @login_required(login_url='login')
 def verify_phone(request):
     if request.method == 'POST':
@@ -174,7 +174,7 @@ def profile(request):
 # def video(request):
     # return render(request, 'video.html')
 
-    
+
 import base64
 @csrf_exempt
 def video(request):
