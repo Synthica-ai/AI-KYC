@@ -90,14 +90,13 @@ def verify_ids(request):
             return redirect('verifyids')
     else:
         return render(request, 'aadharPan.html')
-#testing
+
 @login_required(login_url='login')
 def verify_phone(request):
     if request.method == 'POST':
         phone = request.POST['phone']
         print(phone)
-        if phone.isdigit():
-        #if len(phone) == 10 and phone.isdigit():
+        if len(phone) == 10 and phone.isdigit():
             import twilio
             # Download the helper library from https://www.twilio.com/docs/python/install
             from twilio.rest import Client
@@ -114,9 +113,7 @@ def verify_phone(request):
             message = client.api.account.messages.create(
                     body='Hello Dear, ' + request.user.username +'Your Secure Device OTP is -' + str(otp),
                     from_='+15856270803',
-                    to=phone
-                    #from_='+15856270803',
-                    #to='+91' + phone
+                    to='+91' + phone
                 )
 
             print(message.sid)
