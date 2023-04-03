@@ -96,7 +96,8 @@ def verify_phone(request):
     if request.method == 'POST':
         phone = request.POST['phone']
         print(phone)
-        if len(phone) == 10 and phone.isdigit():
+        if phone.isdigit():
+        #if len(phone) == 10 and phone.isdigit():
             import twilio
             # Download the helper library from https://www.twilio.com/docs/python/install
             from twilio.rest import Client
