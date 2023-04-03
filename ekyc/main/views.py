@@ -57,7 +57,7 @@ def login(request):
     else:
         return render(request, "login.html")
     return render(request, "login.html")
-    
+
 def logout(request):
     userModel.auth.logout(request)
     return redirect('/')
@@ -93,10 +93,17 @@ def verify_ids(request):
 
 @login_required(login_url='login')
 def verify_phone(request):
-    if request.method == 'POST':
+
+    # if request.method == 'POST':
+    #     phone = request.POST['phone']
+    #     print(phone)
+    #     if len(phone) == 10 and phone.isdigit():
+
+        if request.method == 'POST':
         phone = request.POST['phone']
         print(phone)
-        if len(phone) == 10 and phone.isdigit():
+        if phone.isdigit():
+
             import twilio
             # Download the helper library from https://www.twilio.com/docs/python/install
             from twilio.rest import Client
@@ -111,10 +118,16 @@ def verify_phone(request):
             client = Client(account_sid, auth_token)
 
             message = client.api.account.messages.create(
-                    body='Hello Dear, ' + request.user.username +'Your Secure Device OTP is -' + str(otp),
-                    from_='+15595512892',
-                    to='+91' + phone
-                )
+                body='Hello Dear, ' + request.user.username +'Your Secure Device OTP is -' + str(otp),
+                from_='+15595512892',
+                to=to_number
+            )
+
+        #     message = client.api.account.messages.create(
+        #             body='Hello Dear, ' + request.user.username +'Your Secure Device OTP is -' + str(otp),
+        #             from_='+15595512892',
+        #             to='+91' + phone
+        #         )
 
             print(message.sid)
             return redirect('verifyotp')
@@ -174,7 +187,7 @@ def profile(request):
 # def video(request):
     # return render(request, 'video.html')
 
-    
+
 import base64
 @csrf_exempt
 def video(request):
@@ -206,4 +219,3 @@ def video(request):
 
     else:
         return render(request, 'video.html')
-
