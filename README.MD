@@ -14,7 +14,7 @@
 
 ### Demo video link 
 
-[to be uploaded]()
+[Click here to view](https://drive.google.com/file/d/1_2NThyOylrM46eSBjLPmB_8Q3ExAsUCK/view?usp=sharing)
 
 <!-- about us & view patient -->
 ### Tech Stack
@@ -35,7 +35,7 @@
     - Dlib
 
 ### Local Setup
-- You need to install CMake, Dlib and face-recognition libraries
+- Install CMake, Dlib and face-recognition libraries
 - Clone repository.
 - Setup virtual environment
 - Exceute `pip install -r requirements.txt`.
@@ -59,7 +59,7 @@
 - Shyren More
 
 <a href="mailto:shyren.more30@gmail.com"><img alt="Gmail" title="Gmail" src="https://img.shields.io/badge/-Gmail-red?style=for-the-badge&logo=gmail&logoColor=white"/></a>
-<a href="https://www.linkedin.com/in/shyrenmore/"><img alt="LinkedIn" title="LinkedIn" src="https://img.shields.io/badge/-LinkedIn-2867B2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+<a href="https://www.linkedin.com/in/shyrenmore/"><img alt="LinkedIn" title="LinkedIn" src="https://img.shields.io/badge/-LinkedIn-2867B2?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/></a>
 
 - Varun Mamtora
 
