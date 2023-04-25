@@ -38,7 +38,7 @@ def verify_phone(request):
     if request.method == 'POST':
         phone = request.POST['phone']
         print(phone)
-        if len(phone) < 15:
+        if len(phone) <= 15 and not phone.isalpha():
             import twilio
             # Download the helper library from https://www.twilio.com/docs/python/install
             from twilio.rest import Client
@@ -55,7 +55,6 @@ def verify_phone(request):
             message = client.api.account.messages.create(
                     body='Hello Dear, ' + request.user.username +'Your Secure Device OTP is -' + str(otp),
                     from_='+15595512892',
-                    to='+91' + phone
                 )
 
             print(message.sid)
