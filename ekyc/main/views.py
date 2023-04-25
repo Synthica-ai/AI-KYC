@@ -97,7 +97,11 @@ def verify_phone(request):
         phone = request.POST['phone']
         print(phone)
 <<<<<<< HEAD
+<<<<<<< HEAD
         if len(phone) <= 15 and not phone.isalpha():
+=======
+        if len(phone) == 10 and phone.isdigit():
+>>>>>>> parent of becd8a1 (update)
 =======
         if len(phone) == 10 and phone.isdigit():
 >>>>>>> parent of becd8a1 (update)
